@@ -1,6 +1,6 @@
 {
   "name": "djs-modules.js",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "The powerful and simplified commands Handler for Discord Bots.",
   "main": "dist/index.js",
   "typings": "./typings/index.d.ts",
@@ -21,6 +21,10 @@
     "djs",
     "fs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TFAGaming/djs-modules.js.git"
+  },
   "author": "T.F.A 7524",
   "license": "MIT",
   "devDependencies": {
