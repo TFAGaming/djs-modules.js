@@ -1,0 +1,29 @@
+{
+  "name": "djs-modules.js",
+  "version": "2.4.1",
+  "description": "The powerful and simplified commands Handler for Discord Bots.",
+  "main": "dist/index.js",
+  "typings": "./typings/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "git": "git add . && git commit -m \"Auto commit and publish\"",
+    "autoc": "npm run build && npm publish --access=public",
+    "prerel": "npm publish --tag prerelease --access=public"
+  },
+  "keywords": [
+    "discord.js",
+    "discord",
+    "modules",
+    "module",
+    "commands",
+    "handler",
+    "commands handler",
+    "djs",
+    "fs"
+  ],
+  "author": "T.F.A 7524",
+  "license": "MIT",
+  "devDependencies": {
+    "discord.js": "^14.11.0"
+  }
+}
