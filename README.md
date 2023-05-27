@@ -1,15 +1,17 @@
 <div align="center">
     <img src="https://media.discordapp.net/attachments/1111644651036876822/1111644671639298118/6399729.png" width=70 height=70>
-    <br>
     <h1>𝓶𝓸𝓭𝓾𝓵𝓮𝓼.𝓳𝓼</h1>
     <p>
         <h3>Yet another simplified commands handler for Discord bots</h3>
     </p>
-    <img src="https://img.shields.io/npm/v/djs-modules.js?label=Latest%20version%3A">
+    <img src="https://img.shields.io/npm/v/djs-modules.js/latest?label=Latest%20version%3A">
+    <img src="https://img.shields.io/npm/v/djs-modules.js/prerelease?label=Latest%20prerelease%20version%3A">
+    <br>
     <img src="https://img.shields.io/snyk/vulnerabilities/npm/djs-modules.js?label=Vulnerabilities%3A">
     <img src="https://img.shields.io/npm/dm/djs-modules.js?label=Downloads%3A">
     <img src="https://img.shields.io/npm/l/djs-modules.js?label=License%3A">
-    <br>
+    <img src="https://img.shields.io/discord/918611797194465280?color=5865F2&label=Discord:">
+    <img src="https://img.shields.io/npm/collaborators/djs-modules.js?label=Collaborators%3A">
     <br>
 </div>
 
