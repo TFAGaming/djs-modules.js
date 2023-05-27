@@ -1,4 +1,11 @@
-import { Client, Collection, ContextMenuCommandBuilder, RESTOptions, SlashCommandBuilder } from 'discord.js';
+import {
+    Client,
+    Collection,
+    ContextMenuCommandBuilder,
+    RESTOptions,
+    SlashCommandBuilder,
+    SlashCommandSubcommandsOnlyBuilder
+} from 'discord.js';
 import { CommandBuilder, CommandBuilderProperties } from './CommandBuilder';
 import { Events } from './Events';
 import { EventEmitter } from 'node:events';
@@ -22,7 +29,7 @@ export declare class Handler<ExtendedClient extends Client, ExtendedCustomOption
     readonly options: HandlerOptions | undefined;
     readonly collection: Collection<string, CommandBuilder<ExtendedClient, ExtendedCustomOptions>>;
 
-    commands: (SlashCommandBuilder | ContextMenuCommandBuilder)[];
+    commands: (SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder |  ContextMenuCommandBuilder)[];
     /**
      * Creates a command handler; Load all the modules automatically.
      * @param client The Discord bot client.
@@ -36,7 +43,7 @@ export declare class Handler<ExtendedClient extends Client, ExtendedCustomOption
      */
     command: {
         new (data: CommandBuilderProperties<ExtendedClient, ExtendedCustomOptions>): {
-            structure: SlashCommandBuilder | ContextMenuCommandBuilder;
+            structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | ContextMenuCommandBuilder;
             options?: ExtendedCustomOptions | undefined;
             run: (client: ExtendedClient, interaction: import("discord.js").CommandInteraction<import("discord.js").CacheType>, args?: Omit<import("discord.js").CommandInteractionOptionResolver<"cached">, "getMessage" | "getFocused"> | undefined) => void;
         };

@@ -1,7 +1,7 @@
-import { SlashCommandBuilder, ContextMenuCommandBuilder, Client, CommandInteraction, CommandInteractionOptionResolver } from 'discord.js';
+import { SlashCommandBuilder, ContextMenuCommandBuilder, Client, CommandInteraction, CommandInteractionOptionResolver, SlashCommandSubcommandsOnlyBuilder } from 'discord.js';
 
 export declare type CommandBuilderProperties<T, C> = {
-    structure: SlashCommandBuilder | ContextMenuCommandBuilder;
+    structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | ContextMenuCommandBuilder;
     options?: C;
     run: (client: T, interaction: CommandInteraction, args?: Omit<CommandInteractionOptionResolver<'cached'>, "getMessage" | "getFocused">) => void;
 };

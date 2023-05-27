@@ -1,5 +1,5 @@
 import { EventEmitter } from 'node:events';
-import { Client, Collection, ContextMenuCommandBuilder, REST, RESTOptions, Routes, SlashCommandBuilder } from 'discord.js';
+import { Client, Collection, ContextMenuCommandBuilder, REST, RESTOptions, Routes, SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder } from 'discord.js';
 import { CommandBuilder, CommandBuilderProperties } from './CommandBuilder';
 import { error, loadModules } from '../util';
 
@@ -21,7 +21,7 @@ export class Handler <ExtendedClient extends Client, ExtendedCustomOptions = { }
     readonly path: string;
     readonly options: HandlerOptions | undefined;
     readonly collection: Collection<string, CommandBuilder<ExtendedClient, ExtendedCustomOptions>> = new Collection();
-    public commands: (SlashCommandBuilder | ContextMenuCommandBuilder)[] = [];
+    public commands: (SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | ContextMenuCommandBuilder)[] = [];
 
     /**
      * Creates a command handler; Load all the modules automatically.

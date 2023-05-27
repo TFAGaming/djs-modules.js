@@ -6,7 +6,8 @@ import {
     ContextMenuCommandInteraction,
     Collection,
     Client,
-    ChatInputCommandInteraction
+    ChatInputCommandInteraction,
+    SlashCommandSubcommandsOnlyBuilder
 } from "discord.js";
 import { CommandBuilder } from "../class/CommandBuilder";
 
@@ -15,7 +16,7 @@ export interface Events<T extends Client, C = {}> {
         structure: SlashCommandBuilder | ContextMenuCommandBuilder,
         reason: 'undefinedModule' | 'alreadyExist'
     }],
-    'commandLoad': [structure: SlashCommandBuilder | ContextMenuCommandBuilder],
+    'commandLoad': [structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | ContextMenuCommandBuilder],
 
     'chatInputCreate': [interaction: ChatInputCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>],
     'contextMenuCreate': [interaction: ContextMenuCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>],
