@@ -45,7 +45,7 @@ export class Handler <ExtendedClient extends Client, ExtendedCustomOptions = { }
                     try {
                         command?.run(client, interaction, interaction.options);
                     } catch (err) {
-                        console.warn('[djs-modules.js] Failed to finish executing the slash command \'' + interaction.commandName + '\' (' + interaction.commandId + ').\n' + err);
+                        console.warn('[djs-modules.js] Failed to finish executing the applicatio command \'' + interaction.commandName + '\' (' + interaction.commandId + ').\n' + err);
                     };
                 };
 

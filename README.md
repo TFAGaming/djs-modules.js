@@ -6,6 +6,7 @@
     </p>
     <img src="https://img.shields.io/npm/v/djs-modules.js/latest?label=Latest%20version%3A">
     <img src="https://img.shields.io/npm/v/djs-modules.js/prerelease?label=Latest%20prerelease%20version%3A">
+    <img src="https://img.shields.io/static/v1?label=100%%20written%20in:&message=TypeScript&color=007acc">
     <br>
     <img src="https://img.shields.io/snyk/vulnerabilities/npm/djs-modules.js?label=Vulnerabilities%3A">
     <img src="https://img.shields.io/npm/dm/djs-modules.js?label=Downloads%3A">

@@ -1,7 +1,7 @@
-import { EventEmitter } from 'node:events';
 import { Client, Collection, ContextMenuCommandBuilder, RESTOptions, SlashCommandBuilder } from 'discord.js';
 import { CommandBuilder, CommandBuilderProperties } from './CommandBuilder';
 import { Events } from './Events';
+import { EventEmitter } from 'node:events';
 
 export interface HandlerOptions {
     includesDir?: boolean;
@@ -56,5 +56,17 @@ export declare class Handler<ExtendedClient extends Client, ExtendedCustomOption
     deploy(options: DeployOptions): Promise<undefined | any>;
 
     on<E extends keyof Events<ExtendedClient, ExtendedCustomOptions>>(event: E, listener: (...args: Events<ExtendedClient, ExtendedCustomOptions>[E]) => void): this;
+    on<S extends string>(event: S, listener: (...args: any[]) => void): this;
+
     once<E extends keyof Events<ExtendedClient, ExtendedCustomOptions>>(event: E, listener: (...args: Events<ExtendedClient, ExtendedCustomOptions>[E]) => void): this;
+    once<S extends string>(event: S, listener: (...args: any[]) => void): this;
+
+    emit<K extends keyof Events<ExtendedClient, ExtendedCustomOptions>>(event: K, ...args: Events<ExtendedClient, ExtendedCustomOptions>[K]): boolean;
+    emit<S extends string | symbol>(event: Exclude<S, keyof Events<ExtendedClient, ExtendedCustomOptions>>, ...args: any[]): boolean;
+
+    off<E extends keyof Events<ExtendedClient, ExtendedCustomOptions>>(event: E, listener: (...args: Events<ExtendedClient, ExtendedCustomOptions>[E]) => void): this;
+    off<S extends string>(event: S, listener: (...args: any[]) => void): this;
+
+    removeAllListeners<E extends keyof Events<ExtendedClient, ExtendedCustomOptions>>(event?: E): this;
+    removeAllListeners<S extends string>(event?: S): this;
 }
