@@ -22,6 +22,8 @@
 - discord.js v14.9.0 or above.
 - Node.js v16.9.0 or above.
 
+> It's recommended to use TypeScript instead of JavaScript for the typings. If you use JavaScript, you might get tons of errors if you don't follow the types.
+
 ## Installation
 ```coffee
 npm install djs-modules.js
@@ -174,6 +176,13 @@ export default new handler.command({
 ```
 
 ## Options
+### Handler - Type parameters:
+
+| Parameter | Type | Optional? | Default | Description |
+| ------ | ------ | ------ | ------ | ------ |
+| ExtendedClient | Client<**boolean**> | - | - | The Discord bot client. |
+| ExtendedCustomOptions | object | Yes | { } | The custom options for each command builder. |
+
 ### Handler - constructor:
 
 | Option | Type | Optional? | Default | Description |
@@ -183,6 +192,7 @@ export default new handler.command({
 | skipFileIfAlreadyExist | boolean | Yes | false | Skips a file if it's application command structure name already exists in the Collection. If the property's value is `false`, the original key's value (in collection) will be overwrited with another new module data. |
 
 ### Handler - deploy:
+
 | Option | Type | Optional? | Default | Description |
 | ------ | ------ | ------ | ------ | ------ |
 | token | string | - | - | The Discord bot token. |
@@ -191,8 +201,35 @@ export default new handler.command({
 | guildId | string | Yes | null | The guild ID to load the application commands on it.
 
 ## Events
-| Option | Args | Description |
-| ------ | ------ | ------ |
+
+<!--
+'commandSkip': [{
+        structure: SlashCommandBuilder | ContextMenuCommandBuilder;
+        reason: 'undefinedModule' | 'alreadyExist';
+    }];
+    'commandLoad': [structure: SlashCommandBuilder | ContextMenuCommandBuilder];
+
+    'chatInputCreate': [interaction: ChatInputCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
+    'contextMenuCreate': [interaction: ContextMenuCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
+    'userContextMenuCreate': [interaction: UserContextMenuCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
+    'messageContextMenuCreate': [interaction: MessageContextMenuCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
+
+    'deployStart': [];
+    'deployFinish': [];
+    'deployError': [error: any];
+-->
+
+| Event | Description |
+| ------ | ------ |
+| commandSkip | Whenever a command has been skipped by the loader. |
+| commandLoad  | Whenever a command has been successfully loaded. |
+| chatInputCreate | Whenever a Discord user has used a slash command. |
+| contextMenuCreate | Whenever a Discord user has used a context menu command (user or message). |
+| userContextMenuCreate | Whenever a Discord user has used a user context menu command. |
+| messageContextMenuCreate | Whenever a Discord user has used a message context menu command. |
+| deployStart | Whenever REST for application commands has started loading. |
+| deployFinish | Whenever REST has successfully finished loading app. commands. |
+| deployError | Whenever REST has caught an error. |
 
 ## License
 The MIT License
