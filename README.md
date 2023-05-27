@@ -159,7 +159,7 @@ client.login(config.token);
 **ping.ts**:
 ```ts
 import { SlashCommandBuilder } from 'discord.js';
-import { handler } from '../index';
+import { handler } from '../../index';
 
 export default new handler.command({
     structure: new SlashCommandBuilder()
@@ -202,23 +202,6 @@ export default new handler.command({
 | guildId | string | Yes | null | The guild ID to load the application commands on it.
 
 ## Events
-
-<!--
-'commandSkip': [{
-        structure: SlashCommandBuilder | ContextMenuCommandBuilder;
-        reason: 'undefinedModule' | 'alreadyExist';
-    }];
-    'commandLoad': [structure: SlashCommandBuilder | ContextMenuCommandBuilder];
-
-    'chatInputCreate': [interaction: ChatInputCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
-    'contextMenuCreate': [interaction: ContextMenuCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
-    'userContextMenuCreate': [interaction: UserContextMenuCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
-    'messageContextMenuCreate': [interaction: MessageContextMenuCommandInteraction, collection: Collection<string, CommandBuilder<T, C>>];
-
-    'deployStart': [];
-    'deployFinish': [];
-    'deployError': [error: any];
--->
 
 | Event | Description |
 | ------ | ------ |
