@@ -11,12 +11,8 @@ export const loadModules = <ExtendedClient extends Client, ExtendedCustomOptions
             for (const dir of readdirSync(path)) {
                 const newpath = join(path, dir);
 
-                if (!lstatSync(newpath).isDirectory()) {
-                    console.warn('[djs-modules.js] The path ' + newpath + ' is not a directory, successfully skipped.');
-
-                    continue;
-                };
-
+                if (!lstatSync(newpath).isDirectory()) continue;
+                
                 readdirSync(join(newpath)).filter(f => f.endsWith(".js") || f.endsWith(".ts")).map((c) => {
                     const data = require(resolve("./", `${newpath}${newpath.endsWith("/") ? "" : "/"}${c}`)).default;
 

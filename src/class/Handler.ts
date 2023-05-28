@@ -1,22 +1,31 @@
 import { EventEmitter } from 'node:events';
-import { Client, Collection, ContextMenuCommandBuilder, REST, RESTOptions, Routes, SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder } from 'discord.js';
+import {
+    Client,
+    Collection,
+    ContextMenuCommandBuilder,
+    REST,
+    RESTOptions,
+    Routes,
+    SlashCommandBuilder,
+    SlashCommandSubcommandsOnlyBuilder
+} from 'discord.js';
 import { CommandBuilder, CommandBuilderProperties } from './CommandBuilder';
 import { error, loadModules } from '../util';
 
-export interface HandlerOptions {
+interface HandlerOptions {
     includesDir?: boolean,
     defaultListener?: boolean,
     skipFileIfAlreadyExist?: boolean
 };
 
-export interface DeployOptions {
+interface DeployOptions {
     token: string,
     applicationId: string,
     REST?: RESTOptions,
     guildId?: string
 };
 
-export class Handler <ExtendedClient extends Client, ExtendedCustomOptions = { }> extends EventEmitter {
+export class Handler<ExtendedClient extends Client, ExtendedCustomOptions = {}> extends EventEmitter {
     readonly client: ExtendedClient;
     readonly path: string;
     readonly options: HandlerOptions | undefined;
@@ -30,18 +39,21 @@ export class Handler <ExtendedClient extends Client, ExtendedCustomOptions = { }
      * @param options Handler options.
      */
     constructor(client: ExtendedClient, path: string, options?: HandlerOptions) {
+        if (!client) throw error(`The parameter 'client' is required.`);
+        if (!(client instanceof Client)) throw error(`The parameter 'client' is not instance of Client.`);
+
         if (!path) throw error(`The parameter 'path' is required.`);
         if (typeof path !== 'string') throw error(`The parameter 'path' is not type of string, received ${typeof path}.`);
 
         super({ captureRejections: true });
 
-        if (options?.defaultListener !== false) {
+        if (options?.defaultListener) {
             client.on('interactionCreate', async (interaction) => {
                 if (interaction.isChatInputCommand()) {
                     if (!this.collection.has(interaction.commandName)) return;
 
                     const command = this.collection.get(interaction.commandName);
-                    
+
                     try {
                         command?.run(client, interaction, interaction.options);
                     } catch (err) {
@@ -53,7 +65,7 @@ export class Handler <ExtendedClient extends Client, ExtendedCustomOptions = { }
                     if (!this.collection.has(interaction.commandName)) return;
 
                     const command = this.collection.get(interaction.commandName);
-                    
+
                     try {
                         command?.run(client, interaction);
                     } catch (err) {

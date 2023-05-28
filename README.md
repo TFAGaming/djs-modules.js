@@ -2,7 +2,7 @@
     <img src="https://media.discordapp.net/attachments/1111644651036876822/1111644671639298118/6399729.png" width=70 height=70>
     <h1>𝓶𝓸𝓭𝓾𝓵𝓮𝓼.𝓳𝓼</h1>
     <p>
-        <h3>Yet another simplified commands handler for Discord bots</h3>
+        <h3>Yet another simplified commands handler for Discord bots.</h3>
     </p>
     <img src="https://img.shields.io/npm/v/djs-modules.js/latest?label=Latest%20version%3A">
     <img src="https://img.shields.io/npm/v/djs-modules.js/prerelease?label=Latest%20prerelease%20version%3A">
@@ -19,11 +19,20 @@
 # Introduction
 **djs-modules.js** is a package that creates and load all commands from a folder. It supports Slash commands and Context menu commands, and it's very simple and easy to use.
 
+## Table of Contents
+- [modules.js](#)
+- [Introduction](#introduction)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Example](#example)
+- [Options](#options)
+- [License (©)](#license-©)
+
 ## Requirements
 - discord.js v14.9.0 or above.
 - Node.js v16.9.0 or above.
 
-> It's recommended to use TypeScript instead of JavaScript for the typings. If you use JavaScript, you might get tons of errors if you don't follow the types.
+> It's recommended to use TypeScript instead of JavaScript for the typings. If you're new on TypeScript, [click here](https://www.typescriptlang.org/).
 
 ## Installation
 ```coffee
@@ -31,64 +40,7 @@ npm install djs-modules.js
 yarn add djs-modules.js
 ```
 
-## Example n°1:
-```
-Example bot
-├─── commands
-│        └─── ping.ts
-└─── index.ts
-```
-
-**index.ts**:
-```ts
-import { Client } from 'discord.js';
-import { Handler } from 'djs-modules.js';
-
-const client = new Client({
-    intents: ['Guilds']
-});
-
-const config = {
-    token: 'Your bot token',
-    id: 'Your bot ID'
-};
-
-export const handler = new Handler<client>(client, './commands/', {
-    defaultListener: true
-});
-
-handler.on('commandLoad', (data) => console.log('Successfully loaded new command: ' + data.name));
-
-handler.load();
-
-(async () => {
-    await handler.deploy({
-        token: config.token,
-        applicationId: config.id
-    });
-})();
-
-client.login(config.token);
-```
-
-**ping.ts**:
-```ts
-import { SlashCommandBuilder } from 'discord.js';
-import { handler } from '../index';
-
-export default new handler.command({
-    structure: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Replies with pong!'),
-    run: async (client, interaction) => {
-        await interaction.reply({
-            content: `Pong! ${client.ws.ping}`
-        });
-    }
-});
-```
-
-## Example n°2:
+## Example
 ```
 Example bot
 ├─── commands
@@ -117,8 +69,7 @@ interface options {
 };
 
 export const handler = new Handler<client, options>(client, './commands/', {
-    includesDir: true,
-    defaultListener: false
+    includesDir: true
 });
 
 handler.on('commandLoad', (data) => console.log('Successfully loaded new command: ' + data.name));
@@ -177,29 +128,29 @@ export default new handler.command({
 ```
 
 ## Options
-### Handler - Type parameters:
+### Type parameters:
 
 | Parameter | Type | Optional? | Default | Description |
 | ------ | ------ | ------ | ------ | ------ |
-| ExtendedClient | Client<**boolean**> | - | - | The Discord bot client. |
+| ExtendedClient | extends Client | - | - | The Discord bot client. |
 | ExtendedCustomOptions | object | Yes | { } | The custom options for each command builder. |
 
-### Handler - constructor:
+### The constructor:
 
 | Option | Type | Optional? | Default | Description |
 | ------ | ------ | ------ | ------ | ------ |
 | includesDir | boolean | Yes | false | Reads and loads other directories that exists in the provided folder path, including files.
-| defaultListener | boolean | Yes | true | Trigger the property `run` from command builder whenever someone used it's application command name. If you have required custom options, you **must** set this property to `false`. |
+| defaultListener | boolean | Yes | false | Trigger the property `run` from command builder whenever someone used it's application command name. If you have required custom options, you **must** set this property to `false`. |
 | skipFileIfAlreadyExist | boolean | Yes | false | Skips a file if it's application command structure name already exists in the Collection. If the property's value is `false`, the original key's value (in collection) will be overwrited with another new module data. |
 
-### Handler - deploy:
+### deploy() method:
 
 | Option | Type | Optional? | Default | Description |
 | ------ | ------ | ------ | ------ | ------ |
 | token | string | - | - | The Discord bot token. |
 | applicationId | string | - | - | The Discord bot application ID. |
-| REST | RESTOptions | Yes | { } | The REST options. |
-| guildId | string | Yes | null | The guild ID to load the application commands on it.
+| REST | RESTOptions | Yes | undefined | The REST options. |
+| guildId | string | Yes | undefined | The guild ID to load the application commands on it.
 
 ## Events
 
@@ -215,7 +166,7 @@ export default new handler.command({
 | deployFinish | Whenever REST has successfully finished loading app. commands. |
 | deployError | Whenever REST has caught an error. |
 
-## License
+## License (©)
 The MIT License
 
 Copyright (c) 2023 T.F.A
