@@ -30,7 +30,7 @@ export class Handler<ExtendedClient extends Client, ExtendedCustomOptions = {}> 
     readonly path: string;
     readonly options: HandlerOptions | undefined;
     readonly collection: Collection<string, CommandBuilder<ExtendedClient, ExtendedCustomOptions>> = new Collection();
-    public commands: (SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | ContextMenuCommandBuilder)[] = [];
+    public commands: (SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup"> | ContextMenuCommandBuilder)[] = [];
 
     /**
      * Creates a command handler; Load all the modules automatically.

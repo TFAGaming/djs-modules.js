@@ -29,7 +29,7 @@ export declare class Handler<ExtendedClient extends Client, ExtendedCustomOption
     readonly options: HandlerOptions | undefined;
     readonly collection: Collection<string, CommandBuilder<ExtendedClient, ExtendedCustomOptions>>;
 
-    commands: (SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder |  ContextMenuCommandBuilder)[];
+    commands: (SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup"> |  ContextMenuCommandBuilder)[];
     /**
      * Creates a command handler; Load all the modules automatically.
      * @param client The Discord bot client.
@@ -43,7 +43,7 @@ export declare class Handler<ExtendedClient extends Client, ExtendedCustomOption
      */
     command: {
         new (data: CommandBuilderProperties<ExtendedClient, ExtendedCustomOptions>): {
-            structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | ContextMenuCommandBuilder;
+            structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup"> | ContextMenuCommandBuilder;
             options?: ExtendedCustomOptions | undefined;
             run: (client: ExtendedClient, interaction: import("discord.js").CommandInteraction<import("discord.js").CacheType>, args?: Omit<import("discord.js").CommandInteractionOptionResolver<"cached">, "getMessage" | "getFocused"> | undefined) => void;
         };

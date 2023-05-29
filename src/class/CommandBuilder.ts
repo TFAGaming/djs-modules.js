@@ -8,7 +8,7 @@ import {
 } from 'discord.js';
 
 export type CommandBuilderProperties<T, C> = {
-    structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | ContextMenuCommandBuilder;
+    structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup"> | ContextMenuCommandBuilder;
     options?: C;
     run: (client: T, interaction: CommandInteraction, args?: Omit<CommandInteractionOptionResolver<'cached'>, "getMessage" | "getFocused">) => void;
 };
