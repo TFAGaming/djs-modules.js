@@ -1,3 +1,6 @@
+# DELETED
+## This package no longer exists, aqify.js replaced it.
+
 <div align="center">
     <img src="https://media.discordapp.net/attachments/1111644651036876822/1111644671639298118/6399729.png" width=70 height=70>
     <h1>𝓶𝓸𝓭𝓾𝓵𝓮𝓼.𝓳𝓼</h1>
